@@ -1,0 +1,14 @@
+{
+  "extends": "./base",
+  "compilerOptions": {
+    "declaration": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "forceConsistentCasingInFileNames": false
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

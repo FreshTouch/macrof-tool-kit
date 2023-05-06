@@ -1,0 +1,167 @@
+module.exports = {
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: { jsx: true },
+    ecmaVersion: 11,
+    sourceType: 'module',
+    project: './tsconfig.json',
+    extraFileExtensions: ['.less'],
+  },
+  plugins: ['prettier', '@typescript-eslint/eslint-plugin', 'babel', 'sonarjs', 'react-hooks'],
+  extends: [
+    'airbnb',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
+    'plugin:sonarjs/recommended',
+    'prettier'
+  ],
+  env: { browser: true, es2020: true, jest: true },
+  overrides: [
+    {
+      files: [
+        '*.js',
+        '*.jsx',
+        '*.spec.js',
+        '*.spec.jsx',
+        '*.spec.ts',
+        '*.spec.tsx',
+        '*.test.js',
+        '*.test.js',
+        '*.test.jsx',
+        '*.test.ts',
+        '*.test.tsx',
+      ],
+      env: { jest: true },
+    },
+    { files: ['.eslintrc.js', '.prettierrc.js', '.eslintrc.precommit.js'], parser: 'espree' },
+  ],
+  ignorePatterns: [
+    '!.eslintrc.js',
+    '!.eslintrc.precommit.js',
+    "jest.config.js",
+    "setupTests.ts"
+  ],
+  rules: {
+    "no-restricted-imports": [
+      "error",
+      {
+        patterns: ["@mui/material/*", "!@mui/material/locale"]
+      }
+    ],
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      {
+        ignoreRestSiblings: true,
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      },
+    ],
+    'no-unused-vars': [
+      'warn',
+      {
+        ignoreRestSiblings: true,
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      },
+    ],
+    '@typescript-eslint/ban-types': ["error",
+      {
+        types: {
+          String: true,
+          Boolean: true,
+          Number: true,
+          Symbol: true,
+          '{}': false,
+          Object: true,
+          object: false,
+          Function: false,
+          any: false,
+        },
+        extendDefaults: true,
+      }
+    ],
+    '@typescript-eslint/interface-name-prefix': 0,
+    '@typescript-eslint/no-explicit-any': 0,
+    '@typescript-eslint/explicit-function-return-type': 0,
+    '@typescript-eslint/explicit-module-boundary-types': 0,
+    '@typescript-eslint/no-non-null-assertion': 'error',
+    '@typescript-eslint/no-shadow': ["error"],
+    'react-hooks/rules-of-hooks': "error",
+    'react-hooks/exhaustive-deps': 0,
+    'react/prop-types': 0,
+    'react/no-array-index-key': 1,
+    'react/require-default-props': 0,
+    'react/no-access-state-in-setstate': 'off',
+    'react/jsx-no-useless-fragment': 0,
+    'react/jsx-one-expression-per-line': 1,
+    'react/jsx-props-no-spreading': 0,
+    'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.tsx'] }],
+    'react/jsx-boolean-value': 0,
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
+    'babel/new-cap': 0,
+    'babel/camelcase': 1,
+    'babel/no-invalid-this': 1,
+    'babel/object-curly-spacing': 0,
+    'babel/quotes': 0,
+    'babel/valid-typeof': 1,
+    'babel/no-unused-expressions': ['error', { allowShortCircuit: false, allowTernary: false }],
+    'sonarjs/cognitive-complexity': 'error',
+    'sonarjs/no-identical-expressions': 'error',
+    'sonarjs/no-identical-functions': 'error',
+    'sonarjs/no-duplicate-string': 'warn',
+    'implicit-arrow-linebreak': 0,
+    'arrow-body-style': 0,
+    "curly": ['error', 'all'],
+    'class-methods-use-this': 'off',
+    'no-unused-expressions': 'error',
+    'no-nested-ternary': 0,
+    'no-multiple-empty-lines': 'error',
+    'no-console': "warn",
+    'react/no-unused-prop-types': 0,
+    'no-underscore-dangle': 0,
+    'no-useless-constructor': 0,
+    'no-undef': 'off',
+    "no-shadow": "off",
+    'no-debugger': 'warn',
+    'no-useless-concat': 'error',
+    'import/no-cycle': 0,
+    'import/extensions': 0,
+    'import/prefer-default-export': 0,
+    'import/no-named-as-default': 0,
+    "import/no-unresolved": 0,
+    'import/no-extraneous-dependencies': ['error', {
+      peerDependencies: true,
+      devDependencies: true,
+      optionalDependencies: true
+    }],
+    'import/order': [
+      'warn',
+      {
+        'newlines-between': 'always',
+        pathGroups: [
+          { pattern: '*.scss', group: 'index', patternOptions: { matchBase: true }, position: 'after' },
+          { pattern: '*.css', group: 'index', patternOptions: { matchBase: true }, position: 'after' },
+          { pattern: '*.less', group: 'index', patternOptions: { matchBase: true }, position: 'after' },
+        ],
+        groups: [['builtin', 'external'], 'internal', ['parent', 'sibling', 'index', 'object']],
+        alphabetize: {
+          order: 'ignore',
+          caseInsensitive: false,
+        },
+      },
+    ]
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        moduleDirectory: ['node_modules', 'src/'],
+      },
+    },
+  },
+};
